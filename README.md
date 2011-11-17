@@ -9,9 +9,7 @@ using **sequenz** to compose the `connect.bodyParser`, `connect.methodOverride` 
 
 ```coffeescript
 http = require 'http'
-
 connect = require 'connect'
-
 sequenz = require 'sequenz'
 
 middleware = []
@@ -22,6 +20,7 @@ middleware.push connect.methodOverride()
 router = connect.router (app) ->
 
     app.get '/', (req, res) ->
+
         res.end '
             <html>
                 <body>
@@ -42,6 +41,7 @@ router = connect.router (app) ->
             </html>'
 
     app.put '/submit', (req, res) ->
+
         res.end "
             <html>
                 <body>
