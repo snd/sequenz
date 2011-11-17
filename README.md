@@ -4,60 +4,62 @@ minimal composition for connect middleware.
 
 ## Example
 
-using `sequenz` to compose the connect bodyParser, methodOverride and
+using *sequenz* to compose the connect bodyParser, methodOverride and
 router middlewares.
 
-    http = require 'http'
+```coffeescript
+http = require 'http'
 
-    connect = require 'connect'
+connect = require 'connect'
 
-    sequenz = require 'sequenz'
+sequenz = require 'sequenz'
 
-    middleware = []
+middleware = []
 
-    middleware.push connect.bodyParser()
-    middleware.push connect.methodOverride()
+middleware.push connect.bodyParser()
+middleware.push connect.methodOverride()
 
-    router = connect.router (app) ->
+router = connect.router (app) ->
 
-        app.get '/', (req, res) ->
-            res.end '
-                <html>
-                    <body>
-                        <form action="/submit" method="post">
-                            <input type="hidden" name="_method" value="put" />
+    app.get '/', (req, res) ->
+        res.end '
+            <html>
+                <body>
+                    <form action="/submit" method="post">
+                        <input type="hidden" name="_method" value="put" />
 
-                            <label for="username">Username</label>
-                            <input type="text" name="username" />
-                            </br>
+                        <label for="username">Username</label>
+                        <input type="text" name="username" />
+                        </br>
 
-                            <label for="email">Email</label>
-                            <input type="text" name="email" />
-                            </br>
+                        <label for="email">Email</label>
+                        <input type="text" name="email" />
+                        </br>
 
-                            <input type="submit" value="Submit" />
-                        </form>
-                    </body>
-                </html>'
+                        <input type="submit" value="Submit" />
+                    </form>
+                </body>
+            </html>'
 
-        app.put '/submit', (req, res) ->
-            res.end "
-                <html>
-                    <body>
-                        <dl>
-                            <dt>Username</dt>
-                            <dd>#{req.body.username}</dd>
-                            <dt>Email</dt>
-                            <dd>#{req.body.email}
-                        </dl>
-                    </body>
-                </html>"
+    app.put '/submit', (req, res) ->
+        res.end "
+            <html>
+                <body>
+                    <dl>
+                        <dt>Username</dt>
+                        <dd>#{req.body.username}</dd>
+                        <dt>Email</dt>
+                        <dd>#{req.body.email}
+                    </dl>
+                </body>
+            </html>"
 
-    middleware.push router
+middleware.push router
 
-    server = http.createServer sequenz middleware
+server = http.createServer sequenz middleware
 
-    server.listen 8080
+server.listen 8080
+```
 
 ## Usage
 
