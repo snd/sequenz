@@ -4,8 +4,8 @@ minimal composition for connect middleware.
 
 ## Example
 
-using *sequenz* to compose the connect bodyParser, methodOverride and
-router middlewares.
+using **sequenz** to compose the `connect.bodyParser`, `connect.methodOverride` and
+`connect.router` middlewares.
 
 ```coffeescript
 http = require 'http'
@@ -66,5 +66,6 @@ server.listen 8080
 ### sequenz middlewares
 
 `middlewares` is an array of middlewares.
+
 `sequenz middlewares` constructs a new middleware, which will call
 all `middlewares` in order.
