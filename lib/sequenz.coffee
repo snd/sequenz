@@ -4,7 +4,7 @@ sequenz = {}
 
 # unit middleware: does nothing
 
-sequenz.unit = (req, res, next) -> next()
+sequenz.nop = (req, res, next) -> next()
 
 # combine two middlewares to one middleware which runs them in order
 
@@ -16,6 +16,6 @@ sequenz.decorate = (middleware) -> (req, res, next = ->) -> middleware req, res,
 
 # combine an array of middlewares to one middleware which runs them in order
 
-sequenz.sequence = (middleware) -> _.foldl middleware, sequenz.bind, sequenz.unit
+sequenz.sequence = (middleware) -> _.foldl middleware, sequenz.bind, sequenz.nop
 
 module.exports = sequenz
