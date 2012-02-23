@@ -1,5 +1,3 @@
-assert = require 'assert'
-
 _ = require 'underscore'
 
 module.exports = sequenz = {}
@@ -9,8 +7,8 @@ sequenz.nop = (req, res, next) -> next()
 
 # combine two middlewares to one middleware which runs them in order
 sequenz.bind = (fst, snd) ->
-    assert _.isFunction(fst), "fst is not a function, (#{fst})"
-    assert _.isFunction(snd), "snd is not a function, (#{snd})"
+    throw new TypeError "fst is not a function, (#{fst})" if not _.isFunction fst
+    throw new TypeError "snd is not a function, (#{snd})" if not _.isFunction snd
     (req, res, next) -> fst req, res, -> snd req, res, next
 
 # make a middleware usable directly with `http.createServer` by making `next`
