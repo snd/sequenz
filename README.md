@@ -2,6 +2,12 @@
 
 a lightweight way to compose connect middleware.
 
+## Installation
+
+```
+npm install sequenz
+```
+
 ## Usage
 
 ### sequenz middlewares
