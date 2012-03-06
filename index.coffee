@@ -1,3 +1,3 @@
-sequenz = require './lib/sequenz'
+{decorate, sequence} = require './lib/sequenz'
 
-module.exports = (middleware) -> sequenz.decorate sequenz.sequence middleware
+module.exports = (middleware) -> decorate sequence middleware
