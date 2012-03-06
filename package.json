@@ -1,9 +1,17 @@
 {
-  "author": "snd",
-  "name": "sequenz",
-  "version": "1.0.1",
-  "dependencies": {},
-  "devDependencies": {
-    "nodeunit": "*"
-  }
+    "name": "sequenz",
+    "description": "a lightweight way to compose connect middleware",
+    "author": "Maximilian Krüger <kruemaxi@googlemail.com> (http://github.com/snd)",
+    "contributors": [
+        "Mark Engel <mark.c.engel@gmail.com> (http://github.com/mren)"
+    ],
+    "version": "1.0.1",
+    "repository": {
+        "type": "git",
+        "url": "git://github.com/snd/sequenz.git"
+    },
+    "dependencies": {},
+    "devDependencies": {
+        "nodeunit": "*"
+    }
 }
