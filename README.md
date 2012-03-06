@@ -69,3 +69,7 @@ server = http.createServer sequenz middleware
 
 server.listen 8080
 ```
+
+## License
+
+sequenz is released under the MIT License (see LICENSE for details).
