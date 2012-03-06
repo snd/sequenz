@@ -2,6 +2,15 @@
 
 a lightweight way to compose connect middleware.
 
+## Usage
+
+### sequenz middlewares
+
+`middlewares` is an array of middlewares.
+
+`sequenz middlewares` constructs a new middleware, which will call
+all `middlewares` in order.
+
 ## Example
 
 using **sequenz** to compose the `connect.bodyParser`, `connect.methodOverride` and
@@ -60,12 +69,3 @@ server = http.createServer sequenz middleware
 
 server.listen 8080
 ```
-
-## Usage
-
-### sequenz middlewares
-
-`middlewares` is an array of middlewares.
-
-`sequenz middlewares` constructs a new middleware, which will call
-all `middlewares` in order.
