@@ -1,6 +1,6 @@
 # sequenz
 
-minimal composition for connect middleware.
+a lightweight way to compose connect middleware.
 
 ## Example
 
