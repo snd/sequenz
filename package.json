@@ -2,9 +2,7 @@
   "author": "snd",
   "name": "sequenz",
   "version": "1.0.0",
-  "dependencies": {
-    "underscore": "*"
-  },
+  "dependencies": {},
   "devDependencies": {
     "nodeunit": "*"
   }
