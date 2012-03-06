@@ -45,9 +45,11 @@ module.exports =
         f = sequenz.sequence middleware
 
         f {params: []}, {}, test.done
+
     'bind: fst has to be a function': (test) ->
         test.throws -> sequenz.bind {}, sequenz.nop
         test.done()
+
     'bind: snd has to be a function': (test) ->
         test.throws -> sequenz.bind sequenz.nop, {}
         test.done()
