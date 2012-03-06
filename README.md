@@ -14,7 +14,7 @@ npm install sequenz
 
 `middlewares` is an array of middlewares.
 
-`sequenz middlewares` constructs a new middleware, which will call
+`sequenz middlewares` returns a new middleware, which will call
 all `middlewares` in order.
 
 ## Example
