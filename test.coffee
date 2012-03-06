@@ -1,5 +1,3 @@
-assert = require 'assert'
-
 sequenz = require './lib/sequenz'
 
 module.exports =
