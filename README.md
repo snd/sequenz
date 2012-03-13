@@ -11,6 +11,7 @@ npm install sequenz
 ## Usage
 
 given that `middlewares` is an array of middlewares
+
 ```coffeescript
     sequenz middlewares
 ```
