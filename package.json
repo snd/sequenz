@@ -10,7 +10,9 @@
         "type": "git",
         "url": "git://github.com/snd/sequenz.git"
     },
-    "dependencies": {},
+    "dependencies": {
+        "underscore": "*"
+    },
     "devDependencies": {
         "nodeunit": "*"
     }

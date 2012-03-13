@@ -1,4 +1,4 @@
-isFunction = (obj) -> obj? and toString.call(obj) is '[object Function]'
+_ = require 'underscore'
 
 module.exports = sequenz =
 
@@ -7,8 +7,8 @@ module.exports = sequenz =
 
     # combine two middlewares to one middleware which runs them in order
     bind: (fst, snd) ->
-        throw new TypeError "bind: fst is not a function, (#{fst})" if not isFunction fst
-        throw new TypeError "bind: snd is not a function, (#{snd})" if not isFunction snd
+        throw new TypeError "bind: fst is not a function, (#{fst})" if not _.isFunction fst
+        throw new TypeError "bind: snd is not a function, (#{snd})" if not _.isFunction snd
         (req, res, next) -> fst req, res, -> snd req, res, next
 
     # make a middleware usable directly with `http.createServer` by making `next`
@@ -17,4 +17,4 @@ module.exports = sequenz =
         (req, res, next = ->) -> middleware req, res, next
 
     # combine an array of middlewares to one middleware which runs them in order
-    sequence: (middlewares) -> middlewares.reduce sequenz.bind, sequenz.nop
+    sequence: (middlewares) -> _.reduce middlewares, sequenz.bind, sequenz.nop
