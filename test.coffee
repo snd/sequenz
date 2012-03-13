@@ -51,3 +51,19 @@ module.exports =
     'bind: snd has to be a function': (test) ->
         test.throws -> sequenz.bind sequenz.nop, {}
         test.done()
+
+    'normalize: single array as argument': (test) ->
+        test.deepEqual [1,2,3], sequenz.normalize [1,2,3]
+        test.done()
+
+    'normalize: no value as argument': (test) ->
+        test.deepEqual [], sequenz.normalize()
+        test.done()
+
+    'normalize: single value as argument': (test) ->
+        test.deepEqual [1], sequenz.normalize 1
+        test.done()
+
+    'normalize: multiple values as arguments': (test) ->
+        test.deepEqual [1,2,3], sequenz.normalize 1, 2, 3
+        test.done()
