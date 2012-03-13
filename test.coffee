@@ -1,23 +1,34 @@
 sequenz = require './lib/sequenz'
 
 module.exports =
-    'bind: fst is called before snd': (test) ->
-        fst = (req, res, next) ->
-            req.params.push 1
-            next()
 
-        snd = (req, res, next) ->
-            req.params.push 2
-            next()
+    'bind':
 
-        check = (req, res, next) ->
-            test.equals req.params[0], 1
-            test.equals req.params[1], 2
-            next()
+        'fst is called before snd': (test) ->
+            fst = (req, res, next) ->
+                req.params.push 1
+                next()
 
-        f = sequenz.bind (sequenz.bind fst, snd), check
+            snd = (req, res, next) ->
+                req.params.push 2
+                next()
 
-        f {params: []}, {}, test.done
+            check = (req, res, next) ->
+                test.equals req.params[0], 1
+                test.equals req.params[1], 2
+                next()
+
+            f = sequenz.bind (sequenz.bind fst, snd), check
+
+            f {params: []}, {}, test.done
+
+        'fst has to be a function': (test) ->
+            test.throws -> sequenz.bind {}, sequenz.nop
+            test.done()
+
+        'snd has to be a function': (test) ->
+            test.throws -> sequenz.bind sequenz.nop, {}
+            test.done()
 
     'sequence: middleware is called in order': (test) ->
         middleware = []
@@ -44,26 +55,20 @@ module.exports =
 
         f {params: []}, {}, test.done
 
-    'bind: fst has to be a function': (test) ->
-        test.throws -> sequenz.bind {}, sequenz.nop
-        test.done()
+    'normalize':
 
-    'bind: snd has to be a function': (test) ->
-        test.throws -> sequenz.bind sequenz.nop, {}
-        test.done()
+        'single array as argument': (test) ->
+            test.deepEqual [1,2,3], sequenz.normalize [1,2,3]
+            test.done()
 
-    'normalize: single array as argument': (test) ->
-        test.deepEqual [1,2,3], sequenz.normalize [1,2,3]
-        test.done()
+        'no value as argument': (test) ->
+            test.deepEqual [], sequenz.normalize()
+            test.done()
 
-    'normalize: no value as argument': (test) ->
-        test.deepEqual [], sequenz.normalize()
-        test.done()
+        'single value as argument': (test) ->
+            test.deepEqual [1], sequenz.normalize 1
+            test.done()
 
-    'normalize: single value as argument': (test) ->
-        test.deepEqual [1], sequenz.normalize 1
-        test.done()
-
-    'normalize: multiple values as arguments': (test) ->
-        test.deepEqual [1,2,3], sequenz.normalize 1, 2, 3
-        test.done()
+        'multiple values as arguments': (test) ->
+            test.deepEqual [1,2,3], sequenz.normalize 1, 2, 3
+            test.done()
