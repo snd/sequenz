@@ -10,12 +10,17 @@ npm install sequenz
 
 ## Usage
 
-### sequenz middlewares
+given that `middlewares` is an array of middlewares
+```coffeescript
+    sequenz middlewares
+```
+returns a new middleware, which will call all `middlewares` in order.
 
-`middlewares` is an array of middlewares.
+you can also call sequenz with the individual middlewares as arguments:
 
-`sequenz middlewares` returns a new middleware, which will call
-all `middlewares` in order.
+```coffeescript
+    sequenz middleware1, middleware2
+```
 
 ## Example
 
