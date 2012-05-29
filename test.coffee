@@ -30,30 +30,41 @@ module.exports =
             test.throws -> sequenz.bind sequenz.nop, {}
             test.done()
 
-    'sequence: middleware is called in order': (test) ->
-        middleware = []
+    'sequence':
 
-        middleware.push (req, res, next) ->
-            req.params.push 1
-            next()
+        'middleware is called in order': (test) ->
+            middleware = []
 
-        middleware.push (req, res, next) ->
-            req.params.push 2
-            next()
+            middleware.push (req, res, next) ->
+                req.params.push 1
+                next()
 
-        middleware.push (req, res, next) ->
-            req.params.push 3
-            next()
+            middleware.push (req, res, next) ->
+                req.params.push 2
+                next()
 
-        middleware.push (req, res, next) ->
-            test.equals req.params[0], 1
-            test.equals req.params[1], 2
-            test.equals req.params[2], 3
-            next()
+            middleware.push (req, res, next) ->
+                req.params.push 3
+                next()
 
-        f = sequenz.sequence middleware
+            middleware.push (req, res, next) ->
+                test.equals req.params[0], 1
+                test.equals req.params[1], 2
+                test.equals req.params[2], 3
+                next()
 
-        f {params: []}, {}, test.done
+            f = sequenz.sequence middleware
+
+            f {params: []}, {}, test.done
+
+        'works with single middleware': (test) ->
+            middleware = []
+
+            middleware.push (req, res, next) -> next()
+
+            f = sequenz.sequence middleware
+
+            f {}, {}, test.done
 
     'normalizeArguments':
 
