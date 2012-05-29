@@ -1,3 +1,4 @@
-{normalize, decorate, sequence} = require './lib/sequenz'
+{normalizeArguments, decorate, sequence} = require './lib/sequenz'
 
-module.exports = (middleware...) -> decorate sequence normalize middleware...
+module.exports = (middleware...) ->
+    decorate sequence normalizeArguments middleware...

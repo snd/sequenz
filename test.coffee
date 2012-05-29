@@ -55,20 +55,20 @@ module.exports =
 
         f {params: []}, {}, test.done
 
-    'normalize':
+    'normalizeArguments':
 
         'single array as argument': (test) ->
-            test.deepEqual [1,2,3], sequenz.normalize [1,2,3]
+            test.deepEqual [1,2,3], sequenz.normalizeArguments [1,2,3]
             test.done()
 
         'no value as argument': (test) ->
-            test.deepEqual [], sequenz.normalize()
+            test.deepEqual [], sequenz.normalizeArguments()
             test.done()
 
         'single value as argument': (test) ->
-            test.deepEqual [1], sequenz.normalize 1
+            test.deepEqual [1], sequenz.normalizeArguments 1
             test.done()
 
         'multiple values as arguments': (test) ->
-            test.deepEqual [1,2,3], sequenz.normalize 1, 2, 3
+            test.deepEqual [1,2,3], sequenz.normalizeArguments 1, 2, 3
             test.done()

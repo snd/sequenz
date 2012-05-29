@@ -19,5 +19,6 @@ module.exports = sequenz =
     # combine an array of middlewares to one middleware which runs them in order
     sequence: (middlewares) -> _.reduce middlewares, sequenz.bind, sequenz.nop
 
-    normalize: (args...) ->
+    # take either an array or a variable argument list and return arguments array
+    normalizeArguments: (args...) ->
         if args.length is 1 and _.isArray(args[0]) then args[0] else args
