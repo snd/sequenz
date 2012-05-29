@@ -7,8 +7,10 @@ module.exports = sequenz =
 
     # combine two middlewares to one middleware which runs them in order
     bind: (fst, snd) ->
-        throw new TypeError "bind: fst is not a function, (#{fst})" if not _.isFunction fst
-        throw new TypeError "bind: snd is not a function, (#{snd})" if not _.isFunction snd
+        if not _.isFunction fst
+            throw new TypeError "bind: fst is not a function, (#{fst})"
+        if not _.isFunction snd
+            throw new TypeError "bind: snd is not a function, (#{snd})"
         (req, res, next) -> fst req, res, -> snd req, res, next
 
     # make a middleware usable directly with `http.createServer` by making `next`
