@@ -1,6 +1,6 @@
 {
     "name": "sequenz",
-    "description": "a lightweight way to compose connect middleware",
+    "description": "sequenz composes connect middleware",
     "author": "Maximilian Krüger <kruemaxi@googlemail.com> (http://github.com/snd)",
     "contributors": [
         "Mark Engel <mark.c.engel@gmail.com> (http://github.com/mren)"
@@ -11,9 +11,10 @@
         "url": "git://github.com/snd/sequenz.git"
     },
     "dependencies": {
-        "underscore": "*"
+        "coffee-script": "1.3.3",
+        "underscore": "1.3.3"
     },
     "devDependencies": {
-        "nodeunit": "*"
+        "nodeunit": "0.7.4"
     }
 }
