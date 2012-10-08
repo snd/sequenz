@@ -55,7 +55,6 @@ server = http.createServer sequenz [
         res.writeHead 404
         res.end 'not found'
 ]
-    
 
 server.listen 8080
 ```
