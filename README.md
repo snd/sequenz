@@ -1,7 +1,8 @@
 # sequenz
 
-sequenz composes connect middleware for nodejs
 [![Build Status](https://travis-ci.org/snd/sequenz.png)](https://travis-ci.org/snd/sequenz)
+
+sequenz composes connect middleware for nodejs
 
 ### install
 
