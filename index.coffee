@@ -1,5 +1,3 @@
-_ = require 'underscore'
-
 # nop middleware: does nothing
 nop = (req, res, next) -> next()
 
@@ -17,11 +15,11 @@ decorate = (middleware) ->
     (req, res, next = ->) -> middleware req, res, next
 
 # combine an array of middlewares to one middleware which runs them in order
-sequence = (middlewares) -> _.reduce middlewares, bind, nop
+sequence = (middlewares) -> middlewares.reduce bind, nop
 
 # take either an array or a variable argument list and return arguments array
 normalizeArguments = (args...) ->
-    if args.length is 1 and _.isArray(args[0]) then args[0] else args
+    if args.length is 1 and Array.isArray(args[0]) then args[0] else args
 
 module.exports = (middleware...) ->
     decorate sequence normalizeArguments middleware...
