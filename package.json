@@ -1,17 +1,37 @@
 {
     "name": "sequenz",
-    "description": "sequenz composes connect middleware",
-    "author": "Maximilian Krüger <kruemaxi@googlemail.com> (http://github.com/snd)",
-    "contributors": [
-        "Mark Engel <mark.c.engel@gmail.com> (http://github.com/mren)"
-    ],
     "version": "1.0.5",
+    "description": "sequenz composes connect middleware for nodejs",
+    "homepage": "http://github.com/snd/sequenz",
+    "author": {
+        "name": "Maximilian Krüger",
+        "email": "kruemaxi@gmail.com",
+        "url": "http://github.com/snd"
+    },
+    "contributors": [
+        {
+            "name": "Mark Engel",
+            "email": "mark.c.engel@gmai.com",
+            "url": "http://github.com/mren"
+        }
+    ],
+    "bugs": {
+        "url": "http://github.com/snd/sequenz/issues",
+        "email": "kruemaxi@gmail.com"
+    },
     "repository": {
         "type": "git",
         "url": "git://github.com/snd/sequenz.git"
     },
+    "licenses": {
+        "type": "MIT",
+        "url": "git://github.com/snd/sequenz/LICENSE"
+    },
+    "engines": {
+        "node": ">=0.8.5"
+    },
     "dependencies": {
-        "coffee-script": "1.3.3"
+        "coffee-script": "1.4.0"
     },
     "devDependencies": {
         "nodeunit": "0.7.4"
