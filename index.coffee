@@ -3,7 +3,7 @@ _ = require 'underscore'
 # nop middleware: does nothing
 nop = (req, res, next) -> next()
 
-# combine two middlewares to one middleware which runs them in order
+# combine two middlewares into one middleware which runs them in order
 bind = (fst, snd) ->
     if not (typeof fst is 'function')
         throw new TypeError "bind: fst is not a function, (#{fst})"
