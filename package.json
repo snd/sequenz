@@ -1,6 +1,6 @@
 {
     "name": "sequenz",
-    "version": "1.0.7",
+    "version": "1.0.8",
     "description": "sequenz composes connect middleware for nodejs",
     "keywords": ["connect", "middleware"],
     "homepage": "http://github.com/snd/sequenz",
