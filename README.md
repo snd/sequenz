@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/snd/sequenz.png)](https://travis-ci.org/snd/sequenz)
 
-sequenz composes connect middleware for nodejs.
+sequenz composes connect middleware for nodejs
 
 **sequenz makes a single middleware from multiple middlewares**
 
@@ -37,7 +37,7 @@ if a middleware doesn't end the request it should call `next` to give control
 to the next middleware.
 
 the sequenz module exports a single function.
-the function either takes a single array of middlewares or any number of middlewares
+that function either takes a single array of middlewares or any number of middlewares
 as separate arguments.
 it returns a new middleware that will call those middlewares in order.
 
