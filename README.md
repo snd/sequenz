@@ -10,54 +10,65 @@ sequenz composes connect middleware for nodejs
 npm install sequenz
 ```
 
+**or**
+
+put this line in the dependencies section of your `package.json`:
+
+```
+"sequenz": "1.0.7"
+```
+
+then run:
+
+```
+npm install
+```
+
 ### use
 
-given that `middlewares` is an array of middlewares
-
-```coffeescript
-sequenz = require 'sequenz'
-
-sequenz middlewares
-```
-returns a new middleware, which will call all `middlewares` in order.
-
-you can also call sequenz with the individual middlewares as arguments:
-
-```coffeescript
-sequenz middleware1, middleware2, middleware3
-```
+the sequenz module exports a single function which
+takes either an array of middlewares or any number of middlewares
+as arguments and returns a new middleware that will call the
+middlewares in order.
 
 ### example
 
-```coffeescript
-http = require 'http'
-connect = require 'connect'
-sequenz = require 'sequenz'
-Passage = require 'passage'
+the example uses some [connect](http://www.senchalabs.org/connect/) middleware and [passage](https://github.com/snd/passage) for routing.
 
-router = new Passage
+```javascript
+var http = require('http');
+var connect = require('connect');
+var sequenz = require('sequenz');
+var passage = require('passage');
 
-router.get '/', (req, res, next) ->
-    res.end 'landing page'
+var routes = sequenz(
+    passage.get('/', function(req, res, next) {
+        res.end('landing page');
+    }),
+    passage.get('/about', function(req, res, next) {
+        res.end('about page page');
+    })
+);
 
-router.get '/about', (req, res, next) ->
-    res.end 'about page'
+var middleware = sequenz(
+    function(req, res, next) {
+        console.log('i am a middleware that is called first on every request');
+        next();
+    },
+    connect.favicon(),
+    connect.bodyParser(),
+    connect.cookieParser(),
+    connect.query(),
+    routes,
+    function(req, res, next) {
+        res.statusCode = 404;
+        res.end('not found');
+    }
+);
 
-server = http.createServer sequenz [
-    (req, res, next) ->
-        console.log 'i am a middleware that is called first on every request'
-        next()
-    connect.favicon()
-    connect.bodyParser()
-    connect.cookieParser()
-    connect.query()
-    router.middleware
-    (req, res, next) ->
-        res.writeHead 404
-        res.end 'not found'
-]
+var server = http.createServer(middleware);
 
-server.listen 8080
+server.listen(8080);
 ```
 
 ### license: MIT

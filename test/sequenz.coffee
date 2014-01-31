@@ -1,4 +1,4 @@
-sequenz = require './index'
+sequenz = require '../src/sequenz'
 
 module.exports =
 
