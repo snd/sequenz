@@ -46,7 +46,7 @@ var routes = sequenz(
         res.end('landing page');
     }),
     passage.get('/about', function(req, res, next) {
-        res.end('about page page');
+        res.end('about page');
     })
 );
 
