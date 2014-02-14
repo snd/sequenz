@@ -17,7 +17,7 @@ npm install sequenz
 put this line in the dependencies section of your `package.json`:
 
 ```
-"sequenz": "1.0.7"
+"sequenz": "1.0.9"
 ```
 
 then run:
