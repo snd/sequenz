@@ -1,48 +1,44 @@
 {
-    "name": "sequenz",
-    "version": "1.0.9",
-    "description": "sequenz composes connect middleware for nodejs",
-    "keywords": ["connect", "middleware"],
-    "homepage": "http://github.com/snd/sequenz",
-    "author": {
-        "name": "Maximilian Krüger",
-        "email": "kruemaxi@gmail.com",
-        "url": "http://github.com/snd"
-    },
-    "contributors": [
-        {
-            "name": "Mark Engel",
-            "email": "mark.c.engel@gmail.com",
-            "url": "http://github.com/mren"
-        }
-    ],
-    "bugs": {
-        "url": "http://github.com/snd/sequenz/issues",
-        "email": "kruemaxi@gmail.com"
-    },
-    "repository": {
-        "type": "git",
-        "url": "git://github.com/snd/sequenz.git"
-    },
-    "licenses": {
-        "type": "MIT",
-        "url": "git://github.com/snd/sequenz/LICENSE"
-    },
-    "engines": {
-        "node": ">=0.8.5"
-    },
-    "dependencies": {
-    },
-    "devDependencies": {
-        "nodeunit": "0.8.4",
-        "coffee-script": "1.7.1"
-    },
-    "main": "src/sequenz",
-    "scripts": {
-        "prepublish": "coffee --bare --compile --output src src/*.coffee",
-        "postpublish": "rm src/*.js",
-        "pretest": "coffee --bare --compile --output src src/*.coffee && coffee --bare --compile --output test test/*.coffee",
-        "posttest": "rm src/*.js && rm test/*.js",
-        "test": "node_modules/nodeunit/bin/nodeunit test/*.js"
+  "name": "sequenz",
+  "version": "1.0.9",
+  "description": "sequenz composes connect middleware for nodejs",
+  "keywords": ["connect", "middleware"],
+  "homepage": "http://github.com/snd/sequenz",
+  "author": {
+    "name": "Maximilian Krüger",
+    "email": "kruemaxi@gmail.com",
+    "url": "http://github.com/snd"
+  },
+  "contributors": [
+    {
+      "name": "Mark Engel",
+      "email": "mark.c.engel@gmail.com",
+      "url": "http://github.com/mren"
     }
+  ],
+  "bugs": {
+    "url": "http://github.com/snd/sequenz/issues",
+    "email": "kruemaxi@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/snd/sequenz.git"
+  },
+  "licenses": {
+    "type": "MIT",
+    "url": "git://github.com/snd/sequenz/LICENSE"
+  },
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "dependencies": {
+  },
+  "devDependencies": {
+    "nodeunit": "0.9.0",
+    "coffee-script": "1.9.1"
+  },
+  "scripts": {
+    "test": "node_modules/nodeunit/bin/nodeunit test/*.coffee"
+  },
+  "main": "lib/sequenz"
 }
