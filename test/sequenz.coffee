@@ -1,4 +1,4 @@
-sequenz = require '../src/sequenz'
+sequenz = require '../lib/sequenz'
 test = require 'tape'
 
 test 'bind - fst is called before snd', (t) ->
