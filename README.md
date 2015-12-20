@@ -1,6 +1,9 @@
 # sequenz
 
-[![Build Status](https://travis-ci.org/snd/sequenz.png)](https://travis-ci.org/snd/sequenz)
+[![NPM Package](https://img.shields.io/npm/v/sequenz.svg?style=flat)](https://www.npmjs.org/package/sequenz)
+[![Build Status](https://travis-ci.org/snd/sequenz.svg?branch=master)](https://travis-ci.org/snd/sequenz/branches)
+[![codecov.io](http://codecov.io/github/snd/sequenz/coverage.svg?branch=master)](http://codecov.io/github/snd/sequenz?branch=master)
+[![Downloads per Month](https://img.shields.io/npm/dm/sequenz.svg?style=flat)](https://www.npmjs.org/package/sequenz)
 
 sequenz composes connect middleware for nodejs
 
@@ -10,20 +13,6 @@ sequenz composes connect middleware for nodejs
 
 ```
 npm install sequenz
-```
-
-**or**
-
-put this line in the dependencies section of your `package.json`:
-
-```
-"sequenz": "1.0.9"
-```
-
-then run:
-
-```
-npm install
 ```
 
 ### use
