@@ -1,85 +1,79 @@
 sequenz = require '../src/sequenz'
+test = require 'tape'
 
-module.exports =
+test 'bind - fst is called before snd', (t) ->
+  fst = (req, res, next) ->
+    req.params.push 1
+    next()
 
-    'bind':
+  snd = (req, res, next) ->
+    req.params.push 2
+    next()
 
-        'fst is called before snd': (test) ->
-            fst = (req, res, next) ->
-                req.params.push 1
-                next()
+  check = (req, res, next) ->
+    t.equals req.params[0], 1
+    t.equals req.params[1], 2
+    next()
 
-            snd = (req, res, next) ->
-                req.params.push 2
-                next()
+  f = sequenz.bind (sequenz.bind fst, snd), check
 
-            check = (req, res, next) ->
-                test.equals req.params[0], 1
-                test.equals req.params[1], 2
-                next()
+  f {params: []}, {}, t.end
 
-            f = sequenz.bind (sequenz.bind fst, snd), check
+test 'bind - fst has to be a function', (t) ->
+  t.throws -> sequenz.bind {}, sequenz.nop
+  t.end()
 
-            f {params: []}, {}, test.done
+test 'bind - snd has to be a function', (t) ->
+  t.throws -> sequenz.bind sequenz.nop, {}
+  t.end()
 
-        'fst has to be a function': (test) ->
-            test.throws -> sequenz.bind {}, sequenz.nop
-            test.done()
+test 'sequence - middleware is called in order', (t) ->
+  middleware = []
 
-        'snd has to be a function': (test) ->
-            test.throws -> sequenz.bind sequenz.nop, {}
-            test.done()
+  middleware.push (req, res, next) ->
+    req.params.push 1
+    next()
 
-    'sequence':
+  middleware.push (req, res, next) ->
+    req.params.push 2
+    next()
 
-        'middleware is called in order': (test) ->
-            middleware = []
+  middleware.push (req, res, next) ->
+    req.params.push 3
+    next()
 
-            middleware.push (req, res, next) ->
-                req.params.push 1
-                next()
+  middleware.push (req, res, next) ->
+    t.equals req.params[0], 1
+    t.equals req.params[1], 2
+    t.equals req.params[2], 3
+    next()
 
-            middleware.push (req, res, next) ->
-                req.params.push 2
-                next()
+  f = sequenz.sequence middleware
 
-            middleware.push (req, res, next) ->
-                req.params.push 3
-                next()
+  f {params: []}, {}, t.end
 
-            middleware.push (req, res, next) ->
-                test.equals req.params[0], 1
-                test.equals req.params[1], 2
-                test.equals req.params[2], 3
-                next()
+test 'sequence - works with single middleware', (t) ->
+  middleware = []
 
-            f = sequenz.sequence middleware
+  middleware.push (req, res, next) -> next()
 
-            f {params: []}, {}, test.done
+  f = sequenz.sequence middleware
 
-        'works with single middleware': (test) ->
-            middleware = []
+  f {}, {}, t.end
 
-            middleware.push (req, res, next) -> next()
+test 'normalizeArguments - single array as argument', (t) ->
+  t.deepEqual [1,2,3], sequenz.normalizeArguments [1,2,3]
+  t.end()
 
-            f = sequenz.sequence middleware
+test 'normalizeArguments - no value as argument', (t) ->
+  t.deepEqual [], sequenz.normalizeArguments()
+  t.end()
 
-            f {}, {}, test.done
 
-    'normalizeArguments':
+test 'normalizeArguments - single value as argument', (t) ->
+  t.deepEqual [1], sequenz.normalizeArguments 1
+  t.end()
 
-        'single array as argument': (test) ->
-            test.deepEqual [1,2,3], sequenz.normalizeArguments [1,2,3]
-            test.done()
-
-        'no value as argument': (test) ->
-            test.deepEqual [], sequenz.normalizeArguments()
-            test.done()
-
-        'single value as argument': (test) ->
-            test.deepEqual [1], sequenz.normalizeArguments 1
-            test.done()
-
-        'multiple values as arguments': (test) ->
-            test.deepEqual [1,2,3], sequenz.normalizeArguments 1, 2, 3
-            test.done()
+test 'normalizeArguments - multiple values as arguments': (test) ->
+  t.deepEqual [1,2,3], sequenz.normalizeArguments 1, 2, 3
+  t.end()
